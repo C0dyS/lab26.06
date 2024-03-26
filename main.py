@@ -1,27 +1,20 @@
-class Human:
-    def __init__(self,name,age,sex):
+class Passport:
+    def __init__(self,name,age,id_number):
         self._name = name
         self._age = age
-        self._sex = sex
+        self._id_number = id_number
     def get_data(self):
-        return self._name,self._age,self._sex
+        return self._name,self._age,self._id_number
+    def change_id_number(self,new_id_number):
+        self._id_number = new_id_number
 
-class Builder(Human):
-    def __init__(self,name,age,sex,amount_of_buildings_built):
-        super.__init__(name,age,sex)
+class ForeignPassport(Passport):
+    def __init__(self,name,age,foreign_passport_id_number):
+        super().__init__(name,age,'')
         print('parent init')
-        self._amount_of_buildings_built = amount_of_buildings_built
+        self._foreign_passport_id_number = foreign_passport_id_number
     def get_data(self):
-        name,age,sex = super().get_data()
-        return name,age,sex,self._amount_of_buildings_built
-class Sailor(Human):
-    def __init__(self, name, age, sex, biggest_fish_caught):
-        super.__init__(name, age, sex)
-        print('parent init')
-        self._biggest_fish_caught = biggest_fish_caught
-class Pilot(Human):
-    def __init__(self, name, age, sex,amount_of_plane_trips):
-        super.__init__(name, age, sex)
-        print('parent init')
-        self._amount_of_plane_trips = amount_of_plane_trips
-
+        name,age, _ = super().get_data()
+        return name,age,self._foreign_passport_id_number
+    def change_foreign_id_number(self,new_id_number):
+        self._foreign_passport_id_number = new_id_number
